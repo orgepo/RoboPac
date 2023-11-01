@@ -132,7 +132,7 @@ func (b *Bot) messageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 				if err != nil {
 					log.Printf("error saving faucet information: %v\n", err)
 				}
-				msg := p.Sprintf("Faucet ( %.4f PACs) is staked on your node successfully!", b.cfg.FaucetAmount)
+				msg := p.Sprintf("%v  %.4f test PACs is staked to %v successfully!", m.Author.Username, b.cfg.FaucetAmount,  trimmedAddress)
 				_, _ = s.ChannelMessageSendReply(m.ChannelID, msg, m.Reference())
 			}
 		}

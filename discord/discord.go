@@ -24,7 +24,7 @@ type Bot struct {
 	cfg            *config.Config
 	store          *SafeStore
 
-	cm *client.ClientMgr
+	cm *client.Mgr
 }
 
 // guildID: "795592769300987944"
@@ -132,7 +132,8 @@ func (b *Bot) messageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 				if err != nil {
 					log.Printf("error saving faucet information: %v\n", err)
 				}
-				msg := p.Sprintf("%v  %.4f test PACs is staked to %v successfully!", m.Author.Username, b.cfg.FaucetAmount,  trimmedAddress)
+				msg := p.Sprintf("%v  %.4f test PACs is staked to %v successfully!",
+					m.Author.Username, b.cfg.FaucetAmount, trimmedAddress)
 				_, _ = s.ChannelMessageSendReply(m.ChannelID, msg, m.Reference())
 			}
 		}
